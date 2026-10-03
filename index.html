@@ -1,0 +1,493 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Student Card Demo</title>
+
+<style>
+* {
+    box-sizing: border-box;
+}
+
+html, body {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    min-height: 100%;
+}
+
+body {
+    background: #eeeeee;
+    font-family: Arial, Helvetica, sans-serif;
+    color: #17152a;
+}
+
+.app {
+    width: 100%;
+    max-width: 400px;
+    min-height: 100vh;
+    margin: 0 auto;
+    background: #eeeeee;
+}
+
+/* HEADER */
+
+header {
+    height: 63px;
+    background: #eee9ff;
+    border-bottom: 2px solid #6541ed;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    padding: 0 25px;
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+    gap: 9px;
+
+    font-size: 25px;
+    font-weight: 500;
+}
+
+.logo-icon {
+    width: 34px;
+    height: 25px;
+    display: flex;
+    align-items: center;
+}
+
+.logo-icon::before,
+.logo-icon::after {
+    content: "";
+    display: block;
+    width: 19px;
+    height: 19px;
+    background: #17152a;
+    transform: rotate(45deg);
+    border-radius: 5px;
+}
+
+.logo-icon::after {
+    margin-left: -7px;
+}
+
+.menu {
+    font-size: 27px;
+    line-height: 15px;
+    letter-spacing: 3px;
+    transform: rotate(90deg);
+}
+
+/* CONTENT */
+
+.content {
+    padding: 25px 25px 35px;
+    text-align: center;
+}
+
+/* PHOTO */
+
+.photo {
+    width: 105px;
+    height: 105px;
+
+    border-radius: 50%;
+    object-fit: cover;
+
+    margin: 0 auto 25px;
+
+    display: block;
+}
+
+/* INFORMATION CARD */
+
+.student-card {
+    width: 100%;
+
+    border: 2px solid #6541ed;
+    border-radius: 15px;
+
+    background: #e9e3ff;
+
+    padding: 20px 18px 17px;
+
+    text-align: left;
+}
+
+.name {
+    font-size: 18px;
+    line-height: 24px;
+
+    margin-bottom: 13px;
+}
+
+.info-row {
+    display: flex;
+    align-items: center;
+
+    margin: 9px 0;
+
+    font-size: 12px;
+    line-height: 15px;
+}
+
+.icon {
+    width: 27px;
+    flex-shrink: 0;
+
+    font-size: 24px;
+    margin-right: 7px;
+}
+
+.info-label {
+    font-weight: bold;
+    margin-right: 8px;
+    white-space: nowrap;
+}
+
+.info-value {
+    font-weight: normal;
+}
+
+/* STATUS */
+
+.status {
+    width: 100%;
+
+    margin-top: 26px;
+
+    padding: 15px 10px 17px;
+
+    border-radius: 14px;
+
+    background: #b1f0df;
+    border: 2px solid #164c40;
+
+    transition:
+        background-color 0.7s ease,
+        border-color 0.7s ease,
+        color 0.7s ease;
+
+    text-align: center;
+}
+
+.status-title {
+    font-size: 21px;
+    margin-bottom: 7px;
+}
+
+.status-semester {
+    font-size: 12px;
+    margin-bottom: 4px;
+}
+
+.status-expires {
+    font-size: 11px;
+}
+
+.status-expires strong {
+    font-weight: bold;
+}
+
+/* VERIFY ANIMATION */
+
+.status.verifying {
+    animation: validationAnimation 0.9s ease-in-out infinite alternate;
+}
+
+@keyframes validationAnimation {
+
+    from {
+        background-color: #b1f0df;
+        border-color: #164c40;
+        color: #17152a;
+    }
+
+    to {
+        background-color: #0f604b;
+        border-color: #0f604b;
+        color: white;
+    }
+}
+
+/* BUTTONS */
+
+button {
+    width: 100%;
+    height: 51px;
+
+    border-radius: 28px;
+
+    font-size: 18px;
+    font-family: inherit;
+
+    cursor: pointer;
+}
+
+.verify {
+    margin-top: 25px;
+
+    border: none;
+
+    background: #6943ee;
+    color: white;
+
+    transition: opacity 0.2s;
+}
+
+.verify:active {
+    opacity: 0.8;
+}
+
+.verify:disabled {
+    opacity: 0.6;
+}
+
+/* SECOND BUTTON */
+
+.secondary {
+    margin-top: 13px;
+
+    background: #eeeeee;
+
+    border: 2px solid #6943ee;
+
+    color: #211c38;
+}
+
+/* FOOTER */
+
+.footer {
+    margin-top: 25px;
+
+    text-align: center;
+
+    font-size: 11px;
+    line-height: 32px;
+}
+
+.footer strong {
+    font-weight: bold;
+}
+
+/* DEMO LABEL */
+
+.demo-label {
+    margin-top: 15px;
+
+    display: inline-block;
+
+    padding: 5px 10px;
+
+    border-radius: 6px;
+
+    background: #dedede;
+
+    color: #666;
+
+    font-size: 10px;
+    font-weight: bold;
+}
+</style>
+
+</head>
+
+<body>
+
+<div class="app">
+
+    <header>
+
+        <div class="logo">
+
+            <div class="logo-icon"></div>
+
+            <span>Sikt</span>
+
+        </div>
+
+        <div class="menu">•••</div>
+
+    </header>
+
+
+    <main class="content">
+
+        <!-- YOUR PHOTO -->
+        <!-- Keep foto.jpg in the same folder as index.html -->
+
+        <img
+            class="photo"
+            src="foto.jpg"
+            alt="Student photo"
+        >
+
+
+        <!-- STUDENT INFORMATION -->
+
+        <section class="student-card">
+
+            <div class="name">
+                Jesús Orozco Valera (25)
+            </div>
+
+
+            <div class="info-row">
+
+                <div class="icon">📅</div>
+
+                <div>
+
+                    <span class="info-label">
+                        Date of birth:
+                    </span>
+
+                    <span class="info-value">
+                        05.05.2001
+                    </span>
+
+                </div>
+
+            </div>
+
+
+            <div class="info-row">
+
+                <div class="icon">🪪</div>
+
+                <div>
+
+                    <span class="info-label">
+                        Student number:
+                    </span>
+
+                    <span class="info-value">
+                        169436
+                    </span>
+
+                </div>
+
+            </div>
+
+
+            <div class="info-row">
+
+                <div class="icon">🎓</div>
+
+                <div>
+
+                    <span class="info-label">
+                        Institution:
+                    </span>
+
+                    <span class="info-value">
+                        Norwegian University of Science and Technology
+                    </span>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- STATUS -->
+
+        <section id="status" class="status">
+
+            <div class="status-title">
+                Demo student ID
+            </div>
+
+            <div class="status-semester">
+                Autumn 2026
+            </div>
+
+            <div class="status-expires">
+                <strong>Expires:</strong>
+                31.01.2027
+            </div>
+
+        </section>
+
+
+        <!-- VERIFY BUTTON -->
+
+        <button
+            id="verifyButton"
+            class="verify"
+            onclick="verifyStudent()"
+        >
+            Verify
+        </button>
+
+
+        <!-- SECOND BUTTON -->
+
+        <button class="secondary">
+            European Student Card
+            &nbsp;&nbsp;▦
+        </button>
+
+
+        <!-- FOOTER -->
+
+        <div class="footer">
+
+            <div>
+                <strong>Last updated:</strong>
+                03.10.2026 at 14:24 (CEST)
+            </div>
+
+            <div>
+                <strong>Timezone:</strong>
+                Europe/Oslo
+            </div>
+
+            <div>
+                <strong>Version:</strong>
+                4.3.0
+            </div>
+
+
+        </div>
+
+    </main>
+
+</div>
+
+
+<script>
+
+function verifyStudent() {
+
+    const status =
+        document.getElementById("status");
+
+    const button =
+        document.getElementById("verifyButton");
+
+    button.disabled = true;
+
+    status.classList.add("verifying");
+
+    setTimeout(function() {
+
+        status.classList.remove("verifying");
+
+        button.disabled = false;
+
+    }, 3000);
+
+}
+
+</script>
+
+</body>
+</html>
