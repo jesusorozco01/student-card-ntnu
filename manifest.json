@@ -1,0 +1,15 @@
+{
+  "name": "Student Card Demo",
+  "short_name": "Student Demo",
+  "start_url": "./",
+  "display": "standalone",
+  "background_color": "#eeeeee",
+  "theme_color": "#6943ee",
+  "icons": [
+    {
+      "src": "icon.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
+}
